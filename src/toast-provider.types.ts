@@ -1,3 +1,4 @@
+import type { TextStyle } from 'react-native';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 type ToastType = 'info' | 'normal' | 'success' | 'warning' | 'error';
@@ -6,6 +7,7 @@ type ToastPosition = 'top' | 'bottom' | 'middle';
 export interface ToastParams {
   /** The message to show */
   message: string;
+  subMessage?: string;
   /** Type of toast */
   type: ToastType;
   /**  Position of the toast */
@@ -22,6 +24,9 @@ export interface ToastParams {
   actionLabel: string;
   /** Toast Message Style */
   messageStyle: StyleProp<ViewStyle>;
+  subMessageStyle: StyleProp<TextStyle>;
+  /** icon style */
+  iconStyle: StyleProp<TextStyle>;
   /** Toast Message Container Style */
   messageContainerStyle: StyleProp<ViewStyle>;
   /** Toast Snackbar Style */
@@ -66,6 +71,6 @@ export type ToastIconType = {
   [key in ToastType]: string;
 };
 
-export type ToastStyles = {
-  [key in ToastType]: StyleProp<ViewStyle>;
+export type ToastStyles<P> = {
+  [key in ToastType]: StyleProp<P>;
 };

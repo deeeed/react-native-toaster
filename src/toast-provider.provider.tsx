@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { Dimensions, Keyboard, Platform, StyleSheet, View } from 'react-native';
 
-import type { StyleProp, ViewStyle } from 'react-native';
+import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { Snackbar, Text } from 'react-native-paper';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -35,7 +35,13 @@ const defaults: ToastParams = {
   actionLabel: 'DONE',
   iconVisible: false,
   messageStyle: {},
+  iconStyle: {
+    fontSize: 32,
+  },
   messageContainerStyle: {},
+  subMessageStyle: {
+    color: 'white',
+  },
   snackbarStyle: {},
 };
 
@@ -99,6 +105,10 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
           ...options,
           visibility: true,
         };
+        // Remove unset values
+        if (!options.subMessage) {
+          newState.subMessage = undefined;
+        }
         newState.position === 'bottom' && Keyboard.dismiss();
         dispatch({ type: ToastActionType.SHOW, payload: newState });
       },
@@ -177,13 +187,20 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
           {state.iconVisible && (
             <MaterialCommunityIcons
               name={icons[state.type] as any}
-              style={[styles.message, state.messageStyle]}
+              style={[iconStyles[state.type], state.iconStyle]}
               size={20}
             />
           )}
-          <Text
-            style={[styles.message, state.messageStyle]}
-          >{` ${state.message}`}</Text>
+          <View style={styles.textContainer}>
+            <Text
+              style={[styles.message, state.messageStyle]}
+            >{`${state.message}`}</Text>
+            {state.subMessage && (
+              <Text style={[styles.subMessage, state.subMessageStyle]}>
+                {state.subMessage}
+              </Text>
+            )}
+          </View>
         </View>
       </Snackbar>
     </ToastContext.Provider>
@@ -246,32 +263,65 @@ const common: ViewStyle = {
   maxWidth: 400,
 };
 
-const types: ToastStyles = {
+const types: ToastStyles<ViewStyle> = {
   info: {
     ...common,
-    backgroundColor: 'rgba(81,98,188,0.9)',
+    // backgroundColor: 'rgba(81,98,188,0.9)',
   },
   normal: {
     ...common,
-    backgroundColor: 'rgba(72,77,81,0.9)',
+    // backgroundColor: 'rgba(72,77,81,0.9)',
   },
   success: {
     ...common,
-    backgroundColor: 'rgba(75,153,79,0.9)',
+    // backgroundColor: 'rgba(75,153,79,0.9)',
   },
   warning: {
     ...common,
-    backgroundColor: 'rgba(254,177,25,0.9)',
+    // backgroundColor: 'rgba(254,177,25,0.9)',
   },
   error: {
     ...common,
-    backgroundColor: 'rgba(216,25,25,0.9)',
+    // backgroundColor: 'rgba(216,25,25,0.9)',
+  },
+};
+
+const commonIconStyles: TextStyle = {};
+const iconStyles: ToastStyles<TextStyle> = {
+  info: {
+    ...commonIconStyles,
+    color: 'rgba(81,98,188,0.9)',
+  },
+  normal: {
+    ...commonIconStyles,
+    color: 'rgba(72,77,81,0.9)',
+  },
+  success: {
+    ...commonIconStyles,
+    color: 'rgba(75,153,79,0.9)',
+  },
+  warning: {
+    ...commonIconStyles,
+    color: 'rgba(254,177,25,0.9)',
+  },
+  error: {
+    ...commonIconStyles,
+    color: 'rgba(216,25,25,0.9)',
   },
 };
 
 const styles = StyleSheet.create({
   message: {
     color: 'white',
+    fontWeight: 'bold',
+  },
+  textContainer: {
+    gap: 5,
+    paddingLeft: 5,
+  },
+  subMessage: {
+    fontWeight: 'normal',
+    fontSize: 12,
   },
   defaultMessageContainer: {
     flexDirection: 'row',
