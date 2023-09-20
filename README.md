@@ -5,17 +5,53 @@ Simple Toast library
 ## Installation
 
 ```sh
-npm install react-native-toaster
+yarn add @siteed/react-native-toaster
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'react-native-toaster';
+import { ToastProvider, useToast } from '@siteed/react-native-toaster';
+import { Button } from 'react-native-paper';
 
-// ...
+const App = () => {
+  const toaster = useToast();
 
-const result = await multiply(3, 7);
+  return (
+    <View>
+      <Button
+        onPress={() => {
+          toaster.show({
+            message: 'Save Success',
+            subMessage: 'Please check the application',
+            type: 'success',
+            actionLabel: 'OK',
+            iconVisible: true,
+            snackbarStyle: {
+              // backgroundColor: 'red',
+            },
+            duration: 100000,
+            action() {
+              console.log('ok');
+            },
+          });
+        }}
+      >
+        Success Toast
+      </Button>
+    </View>
+  );
+};
+
+export default function WithToast() {
+  return (
+    <SafeAreaProvider>
+      <ToastProvider>
+        <App />
+      </ToastProvider>
+    </SafeAreaProvider>
+  );
+}
 ```
 
 ## Contributing
