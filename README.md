@@ -1,6 +1,6 @@
 # react-native-toaster
 
-Simple Toast library
+Simple Toast library depends on react-native-paper and safe-area-context
 
 ## Installation
 
