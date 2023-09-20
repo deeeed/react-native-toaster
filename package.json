@@ -1,6 +1,6 @@
 {
   "name": "@siteed/react-native-toaster",
-  "version": "0.3.1",
+  "version": "0.4.1",
   "description": "Simple Toast library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
