@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-toaster": ["./src/index"]
+      "@siteed/react-native-toaster": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

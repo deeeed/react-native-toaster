@@ -51,6 +51,11 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
+  "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
+    "react-native-paper": "^5.10.4",
+    "react-native-safe-area-context": "^4.7.2"
+  },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.2.2",
@@ -60,6 +65,8 @@
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
     "commitlint": "^17.0.2",
+    "expo": "^49.0.3",
+    "expo-font": "^11.4.0",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
@@ -78,7 +85,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "exp-font": "*"
   },
   "engines": {
     "node": ">= 16.0.0"
@@ -103,10 +111,5 @@
         }
       ]
     ]
-  },
-  "dependencies": {
-    "@expo/vector-icons": "^13.0.0",
-    "react-native-paper": "^5.10.4",
-    "react-native-safe-area-context": "^4.7.2"
   }
 }
