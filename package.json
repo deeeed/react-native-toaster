@@ -86,7 +86,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "exp-font": "*"
+    "expo-font": "*"
   },
   "engines": {
     "node": ">= 16.0.0"

@@ -4,6 +4,7 @@ import { ToastProvider, useToast } from '@siteed/react-native-toaster';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+// import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const App = () => {
   const toaster = useToast();
@@ -12,6 +13,8 @@ const App = () => {
     <View style={styles.container}>
       <Text>TODO</Text>
       <View>
+        {/* <MaterialCommunityIcons name="camera" size={30} color="#900" /> */}
+
         <Button
           onPress={() => {
             toaster.show({
