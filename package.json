@@ -1,6 +1,6 @@
 {
   "name": "@siteed/react-native-toaster",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Simple Toast library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -51,8 +51,7 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "*",
     "react-dom": "*",
